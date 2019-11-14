@@ -7,11 +7,9 @@ export class Vertex {
 }
 
 export class Graph {
-  qtyVertices: number;
   adjList: Map<Vertex, Vertex[]>;
 
-  constructor(qtyVertices: number) {
-    this.qtyVertices = qtyVertices;
+  constructor() {
     this.adjList = new Map();
   }
 
@@ -27,9 +25,7 @@ export class Graph {
   }
 
   printGraph() {
-    const keys: Vertex[] = [...this.adjList.keys()];
-
-    for (const key of keys) {
+    for (const key of this.adjList.keys()) {
       let display = key.data + ' => ';
 
       const adjacentVertices = this.adjList.get(key);
@@ -42,4 +38,41 @@ export class Graph {
       console.log(display);
     }
   }
+
+  bfs(start: Vertex) {
+    const queue: Vertex[] = []; // will be implemented using array
+    const visited: Map<Vertex, string> = new Map();
+    
+    for (const key of this.adjList.keys()) {
+      visited.set(key, 'white');
+    }
+
+    // Enqueue and mark as visited immediately
+    queue.unshift(start);
+    visited.set(start, 'black');
+
+    while(queue.length > 0) {
+      const nextVertex = queue.pop();
+      if (!nextVertex) return;
+
+      console.log(nextVertex);
+
+      const adjacentVertices = this.adjList.get(nextVertex);
+      if (!adjacentVertices) return;
+
+      for (const v of adjacentVertices) {
+        const color = visited.get(v);
+        if (!color) return;
+
+        if (color === 'white') {
+          queue.unshift(v);
+          visited.set(v, 'black');
+        }
+      }
+    }
+  }
 }
+
+
+
+

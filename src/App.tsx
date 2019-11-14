@@ -15,7 +15,7 @@ const v3 = new Vertex(3);
 const v4 = new Vertex(4);
 const v5 = new Vertex(5);
 
-const g = new Graph(5);
+const g = new Graph();
 g.addVertex(v1);
 g.addVertex(v2);
 g.addVertex(v3);
@@ -31,3 +31,4 @@ g.addEdge(v3, v5);
 g.addEdge(v4, v5);
 
 g.printGraph();
+g.bfs(v1);
