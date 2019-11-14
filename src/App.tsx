@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Vertex, Graph} from './bfs';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <p>hello</p>
   );
 }
 
 export default App;
+
+const v1 = new Vertex(1);
+const v2 = new Vertex(2);
+const v3 = new Vertex(3);
+const v4 = new Vertex(4);
+const v5 = new Vertex(5);
+
+const g = new Graph(5);
+g.addVertex(v1);
+g.addVertex(v2);
+g.addVertex(v3);
+g.addVertex(v4);
+g.addVertex(v5);
+
+g.addEdge(v1, v2);
+g.addEdge(v1, v3);
+g.addEdge(v2, v3);
+g.addEdge(v2, v5);
+g.addEdge(v3, v4);
+g.addEdge(v3, v5);
+g.addEdge(v4, v5);
+
+g.printGraph();
